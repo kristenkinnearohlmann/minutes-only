@@ -83,3 +83,21 @@ footer {
 footer a {
   color: aqua;
 }
+
+/* media query for less than 300px */
+@media only screen and (max-width: 299px) {
+  #container {
+    background-color: green;
+  }
+}
+
+/* media query for generic tablet */
+@media only screen and (min-width: 600px) {
+}
+
+/* media query for generic desktop */
+@media only screen and (min-width: 768px) {
+  #container {
+    background-color: blue;
+  }
+}
