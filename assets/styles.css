@@ -51,9 +51,23 @@ main {
 }
 
 .timer-button {
+  border: 1px solid #575b66;
+  border-radius: 10px;
   font-size: 2.5rem;
   padding: 1rem;
   width: 10rem;
+}
+
+.timer-button:hover {
+  background-color: #575b66;
+  border: black;
+  color: white;
+}
+
+.timer-button:active {
+  background-color: white;
+  border: black;
+  color: #575b66;
 }
 
 footer {
