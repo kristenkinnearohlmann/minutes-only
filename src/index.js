@@ -45,18 +45,13 @@ timeInput.addEventListener("keyup", (e) => {
     }
   });
 
-  console.log("Current time vals", currentTimeVals);
   currentTimeVals.shift();
   currentTimeVals.push(e.key);
-
-  console.log("Current time vals post push", currentTimeVals);
-  console.log(timeAmtIndicies);
 
   for (let i = timeAmtIndicies.length - 1; i >= 0; i--) {
     currentTimeArr[timeAmtIndicies[i]] = currentTimeVals.pop();
   }
 
-  console.log("New current time arr", currentTimeArr);
   currentTimeValue = currentTimeArr.join("");
 
   timeInput.value = currentTimeValue;
