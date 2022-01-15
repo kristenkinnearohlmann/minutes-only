@@ -1,7 +1,7 @@
 const timeInput = document.getElementById("time");
 const timeInputPlaceholder = "0m 00s";
 const timeInputActivate = "00h 00m 00s";
-const timeAmtIndicies = [0, 1, 4, 5, 8, 9];
+const timeAmtIndicies = [9, 8, 5, 4, 1, 0];
 let currentTimeValue;
 let currentEntryIndex;
 
@@ -40,8 +40,12 @@ timeInput.addEventListener("click", () => {
 
 timeInput.addEventListener("keyup", (e) => {
   let currentTimeArr = currentTimeValue.split("");
-  console.log(timeAmtIndicies.reverse());
-  currentTimeArr[currentEntryIndex - 1] = e.key;
+  let currentUpdateIndex = timeAmtIndicies.find(
+    (idx) => currentTimeArr[idx] === "0"
+  );
+  console.log(currentUpdateIndex);
+
+  currentTimeArr[currentUpdateIndex] = e.key;
   timeInput.value = currentTimeArr.join("");
   setInputCursorPosition();
 });
