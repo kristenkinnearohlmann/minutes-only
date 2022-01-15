@@ -1,15 +1,30 @@
 const timeInput = document.getElementById("time");
+const timeInputPlaceholder = "0m 00s";
 
 console.log("Hello world");
 
+const init = () => {
+  resetTimerInput();
+};
+
 const startStop = () => {
   console.log("Clicked Start Stop");
+  timeInput.style.border = "none";
 };
 
 const reset = () => {
-  console.log("Clicked Reset");
+  resetTimerInput();
+  timeInput.style.border = "none";
+};
+
+const resetTimerInput = () => {
+  timeInput.placeholder = timeInputPlaceholder;
 };
 
 timeInput.addEventListener("click", () => {
-  console.log("Clicked time input");
+  timeInput.placeholder = "00h 00m 00s";
+  timeInput.style.border = "1px solid blue";
 });
+
+// Start app
+init();
