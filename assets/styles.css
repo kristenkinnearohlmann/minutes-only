@@ -21,7 +21,7 @@ main {
 #container {
   background-color: rgba(255, 255, 255, 0.75);
   border-radius: 15px;
-  height: 30%;
+  height: 40%;
   padding: 1rem;
   width: 100%;
 }
@@ -36,27 +36,25 @@ main {
 
 #timer-buttons {
   height: 20%;
+  text-align: center;
 }
 
 #time {
   background-color: transparent;
   border: none;
   color: black;
-  font-size: 3rem;
+  font-size: 4rem;
   height: 100%;
   text-align: center;
   width: 100%;
 }
 
-#timer-buttons {
-  text-align: center;
-}
-
 .timer-button {
   border: 1px solid #575b66;
-  border-radius: 10px;
+  border-radius: 5px;
   font-size: 1.5rem;
-  padding: 0.75rem;
+  height: 100%;
+  margin: 0 4px 0 4px;
   width: 8rem;
 }
 
@@ -85,20 +83,102 @@ footer a {
 /* media query for less than 300px */
 @media only screen and (max-width: 299px) {
   #container {
-    background-color: green;
+    width: 100%;
+  }
+
+  #time {
+    font-size: 2rem;
+  }
+
+  .timer-button {
+    font-size: 0.95rem;
+    margin: 0 4px 0 4px;
+    width: 4rem;
   }
 }
 
 /* media query for generic tablet */
 @media only screen and (min-width: 600px) {
   #container {
-    background-color: yellow;
+    height: 50%;
+  }
+
+  #time {
+    font-size: 5rem;
+  }
+
+  .timer-button {
+    font-size: 2rem;
+    margin: 0 6px 0 6px;
+    width: 10rem;
   }
 }
 
 /* media query for generic desktop */
 @media only screen and (min-width: 768px) {
   #container {
-    background-color: blue;
+    height: 60%;
+    width: 90%;
+  }
+
+  #time {
+    font-size: 5rem;
+  }
+
+  .timer-button {
+    font-size: 2.125rem;
+    margin: 0 6px 0 6px;
+    width: 12rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  #container {
+    height: 60%;
+    width: 90%;
+  }
+
+  #time {
+    font-size: 8rem;
+  }
+
+  .timer-button {
+    font-size: 3rem;
+    margin: 0 8px 0 8px;
+    width: 14rem;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  #container {
+    height: 60%;
+    width: 90%;
+  }
+
+  #time {
+    font-size: 10rem;
+  }
+
+  .timer-button {
+    font-size: 3rem;
+    margin: 0 10px 0 10px;
+    width: 16rem;
+  }
+}
+
+@media only screen and (min-width: 2560px) {
+  #container {
+    height: 60%;
+    width: 90%;
+  }
+
+  #time {
+    font-size: 18rem;
+  }
+
+  .timer-button {
+    font-size: 6rem;
+    margin: 0 10px 0 10px;
+    width: 24rem;
   }
 }
