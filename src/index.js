@@ -1,13 +1,11 @@
 const timeInput = document.getElementById("time");
 const timeInputPlaceholder = "0m 00s";
 const timeInputActivate = "00h 00m 00s";
-const timeAmtIndicies = [9, 8, 5, 4, 1, 0];
+const timeAmtIndicies = [0, 1, 4, 5, 8, 9];
 let currentTimeValue;
-let currentEntryIndex;
 
 const init = () => {
   resetTimerInput();
-  currentEntryIndex = 10;
 };
 
 const startStop = () => {
@@ -40,13 +38,28 @@ timeInput.addEventListener("click", () => {
 
 timeInput.addEventListener("keyup", (e) => {
   let currentTimeArr = currentTimeValue.split("");
-  let currentUpdateIndex = timeAmtIndicies.find(
-    (idx) => currentTimeArr[idx] === "0"
-  );
-  console.log(currentUpdateIndex);
 
-  currentTimeArr[currentUpdateIndex] = e.key;
-  timeInput.value = currentTimeArr.join("");
+  const currentTimeVals = currentTimeArr.filter((val, idx) => {
+    if (timeAmtIndicies.includes(idx)) {
+      return val;
+    }
+  });
+
+  console.log("Current time vals", currentTimeVals);
+  currentTimeVals.shift();
+  currentTimeVals.push(e.key);
+
+  console.log("Current time vals post push", currentTimeVals);
+  console.log(timeAmtIndicies);
+
+  for (let i = timeAmtIndicies.length - 1; i >= 0; i--) {
+    currentTimeArr[timeAmtIndicies[i]] = currentTimeVals.pop();
+  }
+
+  console.log("New current time arr", currentTimeArr);
+  currentTimeValue = currentTimeArr.join("");
+
+  timeInput.value = currentTimeValue;
   setInputCursorPosition();
 });
 
