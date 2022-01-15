@@ -32,18 +32,27 @@ main {
 }
 
 #timer-buttons {
-  border: 1px solid blue;
   height: 20%;
 }
 
 #time {
-  /* background-color: blueviolet; */
   background-color: transparent;
   border: none;
   color: black;
   font-size: 8rem;
   height: 100%;
+  text-align: center;
   width: 100%;
+}
+
+#timer-buttons {
+  text-align: center;
+}
+
+.timer-button {
+  font-size: 2.5rem;
+  padding: 1rem;
+  width: 10rem;
 }
 
 footer {
