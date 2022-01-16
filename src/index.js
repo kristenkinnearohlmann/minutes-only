@@ -6,7 +6,8 @@ const timeInputPlaceholder = timeInput.placeholder;
 const timeInputActivate = "00h 00m 00s";
 const timeInputAmtIndicies = [0, 1, 4, 5, 8, 9];
 const timeMinSecIndicies = [0, 1, 4, 5];
-let currentTimeValue = timeInputPlaceholder;
+// let currentTimeValue = timeInputPlaceholder;
+let currentTimeValue = timeInputActivate;
 let currentTimeArr;
 let keyEntered;
 let isRunning = false;
@@ -186,18 +187,11 @@ timeInput.addEventListener("keyup", (e) => {
   }
 });
 
-timeInputNew.addEventListener("click", () => {
+document.getElementById("time-new-entry").addEventListener("click", () => {
   timeInputNew.innerHTML = `<span>0</span><span>0</span><span>h</span><span>&nbsp;</span><span>0</span><span>0</span><span>m</span><span>&nbsp;</span><span>0</span><span>0</span><span>s</span>`;
-  console.log(Array.from(timeInputNew.getElementsByTagName("span")));
-  timeInputNew.contentEditable = true;
-  timeInputNew.getElementsByTagName("span")[9].contentEditable;
-  timeInputNew.getElementsByTagName("span")[9].innerText = 5;
-  timeInputNew.getElementsByTagName("span")[9].style.borderRight =
-    "1px solid black";
-  console.log(timeInputNew.getElementsByTagName("span")[9]);
 });
 
-document.addEventListener("keyup", (e) => {
+document.getElementById("time-new-entry").addEventListener("keyup", (e) => {
   console.log(e.key);
   const nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   if (nums.includes(parseInt(e.key))) {
@@ -224,10 +218,10 @@ document.addEventListener("keyup", (e) => {
   //     console.log(item.textContent);
   //   });
 
-  const inputTimeValue = newInputs.map((item) => item.textContent).join("");
+  // const inputTimeValue = newInputs.map((item) => item.textContent).join("");
 
   const timeIncrements = getInputTimeValues(
-    inputTimeValue,
+    currentTimeValue,
     timeInputAmtIndicies
   );
 
@@ -240,6 +234,12 @@ document.addEventListener("keyup", (e) => {
 
   console.log(currentTimeArr);
   document.getElementById("mind-it").textContent = e.key;
+  currentTimeValue = currentTimeArr.join("");
+  console.log(currentTimeValue);
+
+  newInputs.forEach((item) => {
+    item.textContent = currentTimeArr.shift();
+  });
 
   // const entrySpans = Array.from(timeInputNew.getElementsByTagName("span"));
   // console.log(entrySpans);
