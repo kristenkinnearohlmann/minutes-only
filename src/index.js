@@ -4,22 +4,39 @@ const timeInputActivate = "00h 00m 00s";
 const timeAmtIndicies = [0, 1, 4, 5, 8, 9];
 let currentTimeValue;
 let currentTimeArr;
+let isRunning = false;
 
 const init = () => {
   resetTimerInput();
 };
 
 const startStop = () => {
-  console.log("Clicked Start Stop");
-  console.log(currentTimeValue);
   const currentTimeVals = getCurrentTimeValues();
-  console.log(currentTimeVals);
-  console.log(currentTimeVals[0], currentTimeVals[1]);
-  console.log(currentTimeVals[2], currentTimeVals[3]);
-  console.log(currentTimeVals[4], currentTimeVals[5]);
+  let inputHours = parseInt(currentTimeVals[0] + currentTimeVals[1]);
+  let inputMinutes = parseInt(currentTimeVals[2] + currentTimeVals[3]);
+  let inputSeconds = parseInt(currentTimeVals[4] + currentTimeVals[5]);
+
+  if (inputHours > 0) {
+    inputMinutes += inputHours * 60;
+  }
+
+  if (inputSeconds > 59) {
+    inputMinutes += 1;
+    inputSeconds -= 60;
+  }
+
+  console.log(
+    `${inputMinutes.toString()}m ${inputSeconds.toString().padStart(2, 0)}s`
+  );
+  timeInput.placeholder = `${inputMinutes.toString()}m ${inputSeconds
+    .toString()
+    .padStart(2, 0)}s`;
+  timeInput.value = "";
+  isRunning = true;
 };
 
 const reset = () => {
+  isRunning = false;
   resetTimerInput();
 };
 
@@ -43,7 +60,7 @@ const getCurrentTimeValues = () => {
 };
 
 document.addEventListener("click", (e) => {
-  if (e.target.id === "time") return;
+  if (e.target.id === "time" || isRunning) return;
 
   if (timeInput.value === "" || timeInput.value === timeInputActivate) {
     reset();
@@ -61,7 +78,6 @@ timeInput.addEventListener("click", () => {
 });
 
 timeInput.addEventListener("keyup", (e) => {
-  console.log(e.key);
   if (!parseInt(e.key) && e.key !== "0") {
     timeInput.value = currentTimeValue;
     setInputCursorPosition();
