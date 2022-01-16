@@ -8,6 +8,7 @@ const timeMinSecIndicies = [0, 1, 4, 5];
 let currentTimeValue = timeInputPlaceholder;
 let currentTimeArr;
 let keyEntered;
+let keyInput;
 let isRunning = false;
 let timerInterval;
 
@@ -163,6 +164,11 @@ timeInput.addEventListener("click", () => {
 timeInput.addEventListener("keydown", (e) => {
   keyEntered = e.key;
   document.getElementById("capture").innerText += keyEntered;
+});
+
+timeInput.addEventListener("input", (e) => {
+  keyInput = e.key;
+  document.getElementById("capture").innerText += keyInput;
 });
 
 timeInput.addEventListener("keyup", (e) => {
