@@ -7,6 +7,7 @@ const timeInputAmtIndicies = [0, 1, 4, 5, 8, 9];
 const timeMinSecIndicies = [0, 1, 4, 5];
 let currentTimeValue = timeInputPlaceholder;
 let currentTimeArr;
+let keyEntered;
 let isRunning = false;
 let timerInterval;
 
@@ -159,8 +160,13 @@ timeInput.addEventListener("click", () => {
   setInputCursorPosition();
 });
 
+timeInput.addEventListener("keydown", (e) => {
+  keyEntered = e.key;
+});
+
 timeInput.addEventListener("keyup", (e) => {
-  if (!parseInt(e.key) && e.key !== "0") {
+  // if (!parseInt(e.key) && e.key !== "0") {
+  if (!parseInt(keyEntered) && keyEntered !== "0") {
     timeInput.value = currentTimeValue;
     setInputCursorPosition();
   } else {
