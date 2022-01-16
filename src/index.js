@@ -10,12 +10,11 @@ const init = () => {
 
 const startStop = () => {
   console.log("Clicked Start Stop");
-  timeInput.style.border = "none";
+  console.log(currentTimeValue);
 };
 
 const reset = () => {
   resetTimerInput();
-  timeInput.style.border = "none";
 };
 
 const resetTimerInput = () => {
@@ -27,12 +26,21 @@ const setInputCursorPosition = () => {
   timeInput.setSelectionRange(10, 10);
 };
 
+document.addEventListener("click", (e) => {
+  if (e.target.id === "time") return;
+
+  if (timeInput.value === "" || timeInput.value === timeInputActivate) {
+    reset();
+  } else {
+    timeInput.value = currentTimeValue;
+  }
+});
+
 timeInput.addEventListener("click", () => {
   timeInput.value.length == 0
     ? (timeInput.value = timeInputActivate)
     : (timeInput.value = timeInput.value);
   currentTimeValue = timeInput.value;
-  timeInput.style.border = "1px solid blue";
   setInputCursorPosition();
 });
 
