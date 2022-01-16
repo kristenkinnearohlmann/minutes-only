@@ -13,14 +13,19 @@ const init = () => {
 };
 
 const startStop = (e) => {
-  if (timeInput.value === "") return;
+  if (timeInput.value === "" && timeInput.placeholder === timeInputPlaceholder)
+    return;
+  if (e.target.innerText === "Start") {
+    btnStartStop.innerText = "Stop";
+  } else {
+    btnStartStop.innerText = "Start";
+    return;
+  }
 
   const currentTimeVals = getCurrentTimeValues();
   let inputHours = parseInt(currentTimeVals[0] + currentTimeVals[1]);
   let inputMinutes = parseInt(currentTimeVals[2] + currentTimeVals[3]);
   let inputSeconds = parseInt(currentTimeVals[4] + currentTimeVals[5]);
-
-  console.log(e.target.innerText);
 
   if (inputHours > 0) {
     inputMinutes += inputHours * 60;
@@ -31,9 +36,6 @@ const startStop = (e) => {
     inputSeconds -= 60;
   }
 
-  console.log(
-    `${inputMinutes.toString()}m ${inputSeconds.toString().padStart(2, 0)}s`
-  );
   timeInput.placeholder = `${inputMinutes.toString()}m ${inputSeconds
     .toString()
     .padStart(2, 0)}s`;
@@ -44,6 +46,7 @@ const startStop = (e) => {
 const reset = () => {
   isRunning = false;
   currentTimeValue = "";
+  btnStartStop.innerText = "Start";
   resetTimerInput();
 };
 
