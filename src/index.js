@@ -189,6 +189,7 @@ timeInput.addEventListener("keyup", (e) => {
 timeInputNew.addEventListener("click", () => {
   timeInputNew.innerHTML = `<span>0</span><span>0</span><span>h</span><span>&nbsp;</span><span>0</span><span>0</span><span>m</span><span>&nbsp;</span><span>0</span><span>0</span><span>s</span>`;
   console.log(Array.from(timeInputNew.getElementsByTagName("span")));
+  timeInputNew.contentEditable = true;
   timeInputNew.getElementsByTagName("span")[9].contentEditable;
   timeInputNew.getElementsByTagName("span")[9].innerText = 5;
   timeInputNew.getElementsByTagName("span")[9].style.borderRight =
