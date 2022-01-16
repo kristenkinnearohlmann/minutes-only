@@ -4,7 +4,7 @@ const btnReset = document.getElementById("reset");
 const timeInputPlaceholder = timeInput.placeholder;
 const timeInputActivate = "00h 00m 00s";
 const timeInputAmtIndicies = [0, 1, 4, 5, 8, 9];
-const timeDisplayAmtIndicies = [0, 1, 4, 5];
+const timeMinSecIndicies = [0, 1, 4, 5];
 let currentTimeValue = timeInputPlaceholder;
 let currentTimeArr;
 let isRunning = false;
@@ -24,9 +24,10 @@ const startStop = (e) => {
   if (e.target.innerText === "Start") {
     btnStartStop.innerText = "Stop";
   } else {
-    btnStartStop.innerText = "Start";
     currentTimeValue = timeInput.placeholder;
+    timeInput.value = "";
     stopTimer();
+    isRunning = false;
     return;
   }
 
@@ -90,13 +91,27 @@ const getInputTimeValues = (timeValue, timeIndicies) => {
 const updateTimer = () => {
   const updateTimerVal = getInputTimeValues(
     currentTimeValue,
-    timeDisplayAmtIndicies
+    timeMinSecIndicies
   );
 
-  let inputMinutes = parseTimeIncrement(updateTimerVal[0], updateTimerVal[1]);
-  let inputSeconds = parseTimeIncrement(updateTimerVal[2], updateTimerVal[3]);
-  let totalNewSeconds = inputMinutes * 60 + inputSeconds - 1;
+  if (updateTimerVal.every((val) => val === "0")) {
+    stopTimer();
+    reset();
+    return;
+  }
 
+  let inputMinutes;
+  let inputSeconds;
+
+  if (updateTimerVal.length === 4) {
+    inputMinutes = parseTimeIncrement(updateTimerVal[0], updateTimerVal[1]);
+    inputSeconds = parseTimeIncrement(updateTimerVal[2], updateTimerVal[3]);
+  } else {
+    inputMinutes = 0;
+    inputSeconds = parseTimeIncrement(updateTimerVal[0], updateTimerVal[1]);
+  }
+
+  let totalNewSeconds = inputMinutes * 60 + (inputSeconds - 1);
   inputMinutes = Math.floor(totalNewSeconds / 60);
   inputSeconds = totalNewSeconds - inputMinutes * 60;
 
@@ -106,6 +121,7 @@ const updateTimer = () => {
 
 const stopTimer = () => {
   clearInterval(timerInterval);
+  btnStartStop.innerText = "Start";
 };
 
 const parseTimeIncrement = (pos1, pos2) => {
@@ -119,19 +135,15 @@ const parseTimeIncrement = (pos1, pos2) => {
 };
 
 const setIncrementPlaceholder = (inputMinutes, inputSeconds) => {
-  return (timeInput.placeholder = `${inputMinutes.toString()}m ${inputSeconds
+  return (timeInput.placeholder = `${inputMinutes
     .toString()
-    .padStart(2, 0)}s`);
+    .padStart(2, 0)}m ${inputSeconds.toString().padStart(2, 0)}s`);
 };
 
 document.addEventListener("click", (e) => {
   if (e.target.id === "time" || isRunning) return;
 
-  if (timeInput.value === "" || timeInput.value === timeInputActivate) {
-    reset();
-  } else {
-    timeInput.value = currentTimeValue;
-  }
+  timeInput.value = currentTimeValue;
 });
 
 timeInput.addEventListener("click", () => {
@@ -139,6 +151,7 @@ timeInput.addEventListener("click", () => {
     timeInput.blur();
     return;
   }
+
   timeInput.value.length == 0
     ? (timeInput.value = timeInputActivate)
     : (timeInput.value = timeInput.value);
