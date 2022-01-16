@@ -13,6 +13,8 @@ const init = () => {
 };
 
 const startStop = (e) => {
+  if (timeInput.value === "") return;
+
   const currentTimeVals = getCurrentTimeValues();
   let inputHours = parseInt(currentTimeVals[0] + currentTimeVals[1]);
   let inputMinutes = parseInt(currentTimeVals[2] + currentTimeVals[3]);
@@ -41,6 +43,7 @@ const startStop = (e) => {
 
 const reset = () => {
   isRunning = false;
+  currentTimeValue = "";
   resetTimerInput();
 };
 
