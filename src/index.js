@@ -37,25 +37,30 @@ timeInput.addEventListener("click", () => {
 });
 
 timeInput.addEventListener("keyup", (e) => {
-  let currentTimeArr = currentTimeValue.split("");
+  if (!parseInt(e.key)) {
+    timeInput.value = currentTimeValue;
+    setInputCursorPosition();
+  } else {
+    let currentTimeArr = currentTimeValue.split("");
 
-  const currentTimeVals = currentTimeArr.filter((val, idx) => {
-    if (timeAmtIndicies.includes(idx)) {
-      return val;
+    const currentTimeVals = currentTimeArr.filter((val, idx) => {
+      if (timeAmtIndicies.includes(idx)) {
+        return val;
+      }
+    });
+
+    currentTimeVals.shift();
+    currentTimeVals.push(e.key);
+
+    for (let i = timeAmtIndicies.length - 1; i >= 0; i--) {
+      currentTimeArr[timeAmtIndicies[i]] = currentTimeVals.pop();
     }
-  });
 
-  currentTimeVals.shift();
-  currentTimeVals.push(e.key);
+    currentTimeValue = currentTimeArr.join("");
 
-  for (let i = timeAmtIndicies.length - 1; i >= 0; i--) {
-    currentTimeArr[timeAmtIndicies[i]] = currentTimeVals.pop();
+    timeInput.value = currentTimeValue;
+    setInputCursorPosition();
   }
-
-  currentTimeValue = currentTimeArr.join("");
-
-  timeInput.value = currentTimeValue;
-  setInputCursorPosition();
 });
 
 // Start app
