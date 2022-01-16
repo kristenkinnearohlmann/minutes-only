@@ -162,6 +162,7 @@ timeInput.addEventListener("click", () => {
 
 timeInput.addEventListener("keydown", (e) => {
   keyEntered = e.key;
+  document.getElementById("capture").innerText += keyEntered;
 });
 
 timeInput.addEventListener("keyup", (e) => {
