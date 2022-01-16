@@ -198,6 +198,12 @@ timeInputNew.addEventListener("click", () => {
 timeInputNew.addEventListener("keyup", (e) => {
   console.log(e.key);
 });
+document.addEventListener("keyup", (e) => {
+  console.log(e.key);
+  if ([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0].includes(parseInt(e.key))) {
+    console.log("It's a number");
+  }
+});
 
 btnStartStop.addEventListener("click", (e) => {
   startStop(e);
