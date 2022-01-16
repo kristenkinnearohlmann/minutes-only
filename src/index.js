@@ -188,6 +188,7 @@ timeInput.addEventListener("keyup", (e) => {
 
 timeInputNew.addEventListener("click", () => {
   timeInputNew.innerHTML = `<span>0</span><span>0</span><span>h</span><span>&nbsp;</span><span>0</span><span>0</span><span>m</span><span>&nbsp;</span><span>0</span><span>0</span><span>s</span>`;
+  console.log(Array.from(timeInputNew.getElementsByTagName("span")));
   timeInputNew.getElementsByTagName("span")[9].contentEditable;
   timeInputNew.getElementsByTagName("span")[9].innerText = 5;
   timeInputNew.getElementsByTagName("span")[9].style.borderRight =
@@ -195,14 +196,56 @@ timeInputNew.addEventListener("click", () => {
   console.log(timeInputNew.getElementsByTagName("span")[9]);
 });
 
-timeInputNew.addEventListener("keyup", (e) => {
-  console.log(e.key);
-});
 document.addEventListener("keyup", (e) => {
   console.log(e.key);
-  if ([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0].includes(parseInt(e.key))) {
+  const nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  if (nums.includes(parseInt(e.key))) {
     console.log("It's a number");
   }
+  const newInputs = Array.from(timeInputNew.getElementsByTagName("span"));
+  // let nextIndex;
+  // if (newInputs.length === 11) {
+  //   newInputs.forEach((item, idx) => {
+  //     if (parseInt(item.textContent) && parseInt(item.textContent) !== 0) {
+  //       console.log(idx);
+  //       nextIndex = idx;
+  //     }
+  //   });
+
+  //   console.log(nextIndex - 1);
+  //   i = nextIndex - 1;
+  //   while (i < 9) {
+  //     newInputs[i].textContent = newInputs[i + 1].textContent;
+  //     i++;
+  //   }
+  //   newInputs[9].textContent = e.key;
+  //   newInputs.forEach((item) => {
+  //     console.log(item.textContent);
+  //   });
+
+  const inputTimeValue = newInputs.map((item) => item.textContent).join("");
+
+  const timeIncrements = getInputTimeValues(
+    inputTimeValue,
+    timeInputAmtIndicies
+  );
+
+  timeIncrements.shift();
+  timeIncrements.push(e.key);
+
+  for (let i = timeInputAmtIndicies.length - 1; i >= 0; i--) {
+    currentTimeArr[timeInputAmtIndicies[i]] = timeIncrements.pop();
+  }
+
+  console.log(currentTimeArr);
+  document.getElementById("mind-it").textContent = e.key;
+
+  // const entrySpans = Array.from(timeInputNew.getElementsByTagName("span"));
+  // console.log(entrySpans);
+  // console.log(timeInputNew.getElementsByTagName("span")[9].innerText);
+  // timeInputNew.getElementsByTagName("span")[8].outerText =
+  //   entrySpans[9].outerText;
+  // timeInputNew.getElementsByTagName("span")[9].outerText = e.key;
 });
 
 btnStartStop.addEventListener("click", (e) => {
