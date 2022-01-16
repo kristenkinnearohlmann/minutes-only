@@ -167,6 +167,10 @@ timeInput.addEventListener("keydown", (e) => {
   document.getElementById("capture").innerText += e.which;
 });
 
+document.getElementById("time-bak").addEventListener("keydown", (e) => {
+  document.getElementById("capture").innerText += e.key;
+});
+
 timeInput.addEventListener("keyup", (e) => {
   // if (!parseInt(e.key) && e.key !== "0") {
   if (!parseInt(keyEntered) && keyEntered !== "0") {
