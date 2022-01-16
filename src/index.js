@@ -1,4 +1,5 @@
 const timeInput = document.getElementById("time");
+const timeInputNew = document.getElementById("time-new");
 const btnStartStop = document.getElementById("start-stop");
 const btnReset = document.getElementById("reset");
 const timeInputPlaceholder = timeInput.placeholder;
@@ -160,20 +161,8 @@ timeInput.addEventListener("click", () => {
   setInputCursorPosition();
 });
 
-timeInput.addEventListener("keydown", (e) => {
-  keyEntered = e.key;
-  console.log(e.which);
-  console.log(e.keyCode);
-  document.getElementById("capture").innerText += e.which;
-});
-
-document.getElementById("time-bak").addEventListener("keydown", (e) => {
-  document.getElementById("capture").innerText += e.key;
-});
-
 timeInput.addEventListener("keyup", (e) => {
-  // if (!parseInt(e.key) && e.key !== "0") {
-  if (!parseInt(keyEntered) && keyEntered !== "0") {
+  if (!parseInt(e.key) && e.key !== "0") {
     timeInput.value = currentTimeValue;
     setInputCursorPosition();
   } else {
@@ -195,6 +184,19 @@ timeInput.addEventListener("keyup", (e) => {
     timeInput.placeholder = currentTimeValue;
     setInputCursorPosition();
   }
+});
+
+timeInputNew.addEventListener("click", () => {
+  timeInputNew.innerHTML = `<span>0</span><span>0</span><span>h</span><span>&nbsp;</span><span>0</span><span>0</span><span>m</span><span>&nbsp;</span><span>0</span><span>0</span><span>s</span>`;
+  timeInputNew.getElementsByTagName("span")[9].contentEditable;
+  timeInputNew.getElementsByTagName("span")[9].innerText = 5;
+  timeInputNew.getElementsByTagName("span")[9].style.borderRight =
+    "1px solid black";
+  console.log(timeInputNew.getElementsByTagName("span")[9]);
+});
+
+timeInputNew.addEventListener("keyup", (e) => {
+  console.log(e.key);
 });
 
 btnStartStop.addEventListener("click", (e) => {
