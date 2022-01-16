@@ -1,5 +1,7 @@
 const timeInput = document.getElementById("time");
-const timeInputPlaceholder = "0m 00s";
+const btnStartStop = document.getElementById("start-stop");
+const btnReset = document.getElementById("reset");
+const timeInputPlaceholder = timeInput.placeholder;
 const timeInputActivate = "00h 00m 00s";
 const timeAmtIndicies = [0, 1, 4, 5, 8, 9];
 let currentTimeValue;
@@ -10,11 +12,13 @@ const init = () => {
   resetTimerInput();
 };
 
-const startStop = () => {
+const startStop = (e) => {
   const currentTimeVals = getCurrentTimeValues();
   let inputHours = parseInt(currentTimeVals[0] + currentTimeVals[1]);
   let inputMinutes = parseInt(currentTimeVals[2] + currentTimeVals[3]);
   let inputSeconds = parseInt(currentTimeVals[4] + currentTimeVals[5]);
+
+  console.log(e.target.innerText);
 
   if (inputHours > 0) {
     inputMinutes += inputHours * 60;
@@ -96,6 +100,14 @@ timeInput.addEventListener("keyup", (e) => {
     timeInput.value = currentTimeValue;
     setInputCursorPosition();
   }
+});
+
+btnStartStop.addEventListener("click", (e) => {
+  startStop(e);
+});
+
+btnReset.addEventListener("click", () => {
+  reset();
 });
 
 // Start app
