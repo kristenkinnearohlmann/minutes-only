@@ -318,19 +318,13 @@ const setDisplayPlaceholder = (
   return displayTime.join("");
 };
 
-// event listeners
-timeEntry.addEventListener("click", () => {
-  timeEntry.placeholder = timeActivatePlaceholder;
-});
-
-timeEntry.addEventListener("keyup", (e) => {
-  // TODO: Add check for number key
+const updateDisplayPlaceholder = (key) => {
   timeIncrements = getInputTimeArray(
     timeEntry.placeholder,
     timeInputAmtIndicies
   );
   timeIncrements.shift();
-  timeIncrements.push(e.key);
+  timeIncrements.push(key);
 
   timeEntry.placeholder = setDisplayPlaceholder(
     timeIncrements,
@@ -338,10 +332,19 @@ timeEntry.addEventListener("keyup", (e) => {
     timeActivatePlaceholder
   );
   timeEntry.value = "";
-  // for (let i = timeInputAmtIndicies.length - 1; i >= 0; i--) {
-  //   newTime[timeInputAmtIndicies[i]] = timeIncrements.pop();
-  // }
-  // TODO: Reset placeholder and remove value
+};
+
+// event listeners
+timeEntry.addEventListener("click", () => {
+  timeEntry.placeholder = timeActivatePlaceholder;
+});
+
+timeEntry.addEventListener("keyup", (e) => {
+  if (e.key.match(/[0-9]/g)) {
+    updateDisplayPlaceholder(parseInt(e.key));
+  } else {
+    timeEntry.value = "";
+  }
 });
 
 // btnStartStop.addEventListener("click", (e) => {
