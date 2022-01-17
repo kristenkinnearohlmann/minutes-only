@@ -5,8 +5,7 @@ let inputTimeArray = [];
 let timeIncrements = [];
 let entryTime = [];
 // const timeInput = document.getElementById("time");
-// const timeInputNew = document.getElementById("time-new");
-// const timeInputNew2 = document.getElementById("time-new-entry");
+
 // const btnStartStop = document.getElementById("start-stop");
 // const btnReset = document.getElementById("reset");
 // const timeInputPlaceholder = timeInput.placeholder;
