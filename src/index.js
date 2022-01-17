@@ -202,6 +202,33 @@ document.addEventListener("keyup", (e) => {
   if (isActiveTimeEntry) {
     console.log("Key is up");
     document.getElementById("mind-it").textContent = e.key;
+
+    console.log(e.key);
+    const nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    if (nums.includes(parseInt(e.key))) {
+      console.log("It's a number");
+    }
+    const newInputs = Array.from(timeInputNew.getElementsByTagName("span"));
+    const timeIncrements = getInputTimeValues(
+      currentTimeValue,
+      timeInputAmtIndicies
+    );
+
+    timeIncrements.shift();
+    timeIncrements.push(e.key);
+
+    for (let i = timeInputAmtIndicies.length - 1; i >= 0; i--) {
+      currentTimeArr[timeInputAmtIndicies[i]] = timeIncrements.pop();
+    }
+
+    console.log(currentTimeArr);
+    document.getElementById("mind-it").textContent = e.key;
+    currentTimeValue = currentTimeArr.join("");
+    console.log(currentTimeValue);
+
+    newInputs.forEach((item) => {
+      item.textContent = currentTimeArr.shift();
+    });
   }
 });
 
