@@ -12,6 +12,7 @@ let currentTimeArr;
 let keyEntered;
 let isRunning = false;
 let timerInterval;
+let isActiveTimeEntry = false;
 
 const init = () => {
   resetTimerInput();
@@ -187,8 +188,20 @@ timeInput.addEventListener("keyup", (e) => {
   }
 });
 
-document.getElementById("time-new-entry").addEventListener("click", () => {
+timeInputNew.addEventListener("click", () => {
+  console.log("Clicked time-new");
   timeInputNew.innerHTML = `<span>0</span><span>0</span><span>h</span><span>&nbsp;</span><span>0</span><span>0</span><span>m</span><span>&nbsp;</span><span>0</span><span>0</span><span>s</span>`;
+
+  timeInputNew.getElementsByTagName("span")[9].style.borderRight =
+    "1px solid black";
+
+  isActiveTimeEntry = true;
+});
+
+document.addEventListener("keyup", () => {
+  if (isActiveTimeEntry) {
+    console.log("Key is up");
+  }
 });
 
 document.getElementById("time-new-entry").addEventListener("keyup", (e) => {
