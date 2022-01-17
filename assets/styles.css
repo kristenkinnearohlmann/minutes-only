@@ -1,3 +1,9 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 body {
   background-color: darkgray;
   /* background-image: url("jonny-caspari-TQGpLw48VsU-unsplash.jpg"); */
@@ -37,6 +43,18 @@ main {
 #timer-buttons {
   height: 20%;
   text-align: center;
+}
+
+#time-entry {
+  background-color: transparent;
+  border: none;
+  caret-color: transparent;
+  color: black;
+  font-size: 2.75rem;
+  height: 100%;
+  padding: 2rem 0;
+  text-align: center;
+  width: 100%;
 }
 
 #time {
@@ -181,10 +199,4 @@ footer a {
     margin: 0 10px 0 10px;
     width: 24rem;
   }
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }
