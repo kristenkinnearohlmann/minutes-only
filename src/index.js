@@ -1,5 +1,6 @@
 const timeInput = document.getElementById("time");
 const timeInputNew = document.getElementById("time-new");
+const timeInputNew2 = document.getElementById("time-new-entry");
 const btnStartStop = document.getElementById("start-stop");
 const btnReset = document.getElementById("reset");
 const timeInputPlaceholder = timeInput.placeholder;
@@ -198,6 +199,16 @@ timeInputNew.addEventListener("click", () => {
   isActiveTimeEntry = true;
 });
 
+timeInputNew2.addEventListener("click", () => {
+  timeInputNew2.placeholder = "00h 00m 00|s";
+  timeInputNew2.style.caretColor = "transparent";
+});
+
+timeInputNew2.addEventListener("keyup", (e) => {
+  timeInputNew2.placeholder = `00h 00m 0${e.key}s`;
+  timeInputNew2.value = "";
+});
+
 document.addEventListener("keyup", (e) => {
   if (isActiveTimeEntry) {
     console.log("Key is up");
@@ -232,8 +243,9 @@ document.addEventListener("keyup", (e) => {
   }
 });
 
-document.getElementById("time-new-entry").addEventListener("keyup", (e) => {
+timeInputNew2.addEventListener("keyup", (e) => {
   console.log(e.key);
+
   const nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   if (nums.includes(parseInt(e.key))) {
     console.log("It's a number");
