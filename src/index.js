@@ -198,9 +198,10 @@ timeInputNew.addEventListener("click", () => {
   isActiveTimeEntry = true;
 });
 
-document.addEventListener("keyup", () => {
+document.addEventListener("keyup", (e) => {
   if (isActiveTimeEntry) {
     console.log("Key is up");
+    document.getElementById("mind-it").textContent = e.key;
   }
 });
 
