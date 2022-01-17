@@ -1,13 +1,15 @@
 const timeEntry = document.getElementById("time-entry");
+const timeActivatePlaceholder = "00h 00m 00|s";
 const timeInputAmtIndicies = [0, 1, 4, 5, 8, 9];
-let inputTimeArray;
+let inputTimeArray = [];
+let timeIncrements = [];
+let entryTime = [];
 // const timeInput = document.getElementById("time");
 // const timeInputNew = document.getElementById("time-new");
 // const timeInputNew2 = document.getElementById("time-new-entry");
 // const btnStartStop = document.getElementById("start-stop");
 // const btnReset = document.getElementById("reset");
 // const timeInputPlaceholder = timeInput.placeholder;
-// const timeInputActivate = "00h 00m 00s";
 
 // const timeMinSecIndicies = [0, 1, 4, 5];
 // // let currentTimeValue = timeInputPlaceholder;
@@ -295,23 +297,51 @@ const init = () => {};
 
 // functions
 const getInputTimeArray = (timeValue, timeIndicies) => {
-  inputTimeArray = timeValue.split("");
-
-  return inputTimeArray.filter((val, idx) => {
+  return timeValue.split("").filter((val, idx) => {
     if (timeIndicies.includes(idx)) {
       return val;
     }
   });
 };
 
+const setDisplayPlaceholder = (
+  displayTimeValues,
+  timeIndicies,
+  displayTime
+) => {
+  displayTime = displayTime.split("");
+
+  timeIndicies.forEach((idx) => {
+    displayTime[idx] = displayTimeValues.shift();
+  });
+
+  return displayTime.join("");
+};
+
 // event listeners
 timeEntry.addEventListener("click", () => {
-  timeEntry.placeholder = "00h 00m 00|s";
+  timeEntry.placeholder = timeActivatePlaceholder;
 });
 
 timeEntry.addEventListener("keyup", (e) => {
-  window.alert(`Key pressed: ${e.key}`);
-  console.log(getInputTimeArray(timeEntry.placeholder, timeInputAmtIndicies));
+  // TODO: Add check for number key
+  timeIncrements = getInputTimeArray(
+    timeEntry.placeholder,
+    timeInputAmtIndicies
+  );
+  timeIncrements.shift();
+  timeIncrements.push(e.key);
+
+  timeEntry.placeholder = setDisplayPlaceholder(
+    timeIncrements,
+    timeInputAmtIndicies,
+    timeActivatePlaceholder
+  );
+  timeEntry.value = "";
+  // for (let i = timeInputAmtIndicies.length - 1; i >= 0; i--) {
+  //   newTime[timeInputAmtIndicies[i]] = timeIncrements.pop();
+  // }
+  // TODO: Reset placeholder and remove value
 });
 
 // btnStartStop.addEventListener("click", (e) => {
