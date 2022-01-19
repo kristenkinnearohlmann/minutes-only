@@ -1,5 +1,6 @@
 const timeEntry = document.getElementById("time-entry");
-const timeActivatePlaceholder = "00h 00m 00|s";
+const timeEntryPlaceholder = timeEntry.placeholder;
+const timeEntryActivatePlaceholder = "00h 00m 00|s";
 const timeInputAmtIndicies = [0, 1, 4, 5, 8, 9];
 let inputTimeArray = [];
 let timeIncrements = [];
@@ -7,7 +8,7 @@ let entryTime = [];
 // const timeInput = document.getElementById("time");
 
 // const btnStartStop = document.getElementById("start-stop");
-// const btnReset = document.getElementById("reset");
+const btnReset = document.getElementById("reset");
 // const timeInputPlaceholder = timeInput.placeholder;
 
 // const timeMinSecIndicies = [0, 1, 4, 5];
@@ -65,20 +66,6 @@ const init = () => {};
 //   timeInput.value = "";
 //   isRunning = true;
 //   timerInterval = setInterval(updateTimer, 1000);
-// };
-
-// const reset = () => {
-//   isRunning = false;
-//   currentTimeValue = "";
-//   btnStartStop.innerText = "Start";
-//   timeInput.placeholder = timeInputPlaceholder;
-//   stopTimer();
-//   resetTimerInput();
-// };
-
-// const resetTimerInput = () => {
-//   timeInput.value = "";
-//   timeInput.placeholder = timeInputPlaceholder;
 // };
 
 // const setInputCursorPosition = () => {
@@ -303,6 +290,20 @@ const getInputTimeArray = (timeValue, timeIndicies) => {
   });
 };
 
+const reset = () => {
+  //   isRunning = false;
+  //   currentTimeValue = "";
+  //   btnStartStop.innerText = "Start";
+  //   timeInput.placeholder = timeInputPlaceholder;
+  //   stopTimer();
+  resetTimerInput();
+};
+
+const resetTimerInput = () => {
+  timeEntry.value = "";
+  timeEntry.placeholder = timeEntryPlaceholder;
+};
+
 const setDisplayPlaceholder = (
   displayTimeValues,
   timeIndicies,
@@ -328,14 +329,14 @@ const updateDisplayPlaceholder = (key) => {
   timeEntry.placeholder = setDisplayPlaceholder(
     timeIncrements,
     timeInputAmtIndicies,
-    timeActivatePlaceholder
+    timeEntryActivatePlaceholder
   );
   timeEntry.value = "";
 };
 
 // event listeners
 timeEntry.addEventListener("click", () => {
-  timeEntry.placeholder = timeActivatePlaceholder;
+  timeEntry.placeholder = timeEntryActivatePlaceholder;
 });
 
 timeEntry.addEventListener("keyup", (e) => {
@@ -350,9 +351,9 @@ timeEntry.addEventListener("keyup", (e) => {
 //   startStop(e);
 // });
 
-// btnReset.addEventListener("click", () => {
-//   reset();
-// });
+btnReset.addEventListener("click", () => {
+  reset();
+});
 
 // Start app
 init();
