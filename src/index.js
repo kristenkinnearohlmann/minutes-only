@@ -5,6 +5,7 @@ const timeInputAmtIndicies = [0, 1, 4, 5, 8, 9];
 const btnStartStop = document.getElementById("start-stop");
 const btnReset = document.getElementById("reset");
 let isRunning;
+let timeRemaining;
 let inputTimeArray = [];
 let timeIncrements = [];
 let entryTime = [];
@@ -46,13 +47,24 @@ const setDisplayPlaceholder = (
   return displayTime.join("");
 };
 
+const setTimerValue = (timeValueEntered) => {
+  timeIncrements = getInputTimeArray(
+    timeEntry.placeholder,
+    timeInputAmtIndicies
+  );
+  console.log(timeIncrements);
+};
+
 const timerStart = () => {
   isRunning = true;
+  setTimerValue(timeEntry.placeholder);
   btnStartStop.innerText = "Stop";
 };
 
 const timerStop = () => {
+  // TODO: clearInterval(timeInterval)
   isRunning = false;
+  console.log(timeEntry.placeholder);
   btnStartStop.innerText = "Start";
 };
 
