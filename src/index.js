@@ -6,10 +6,10 @@ const timeMinSecIndicies = [0, 1, 4, 5];
 const btnStartStop = document.getElementById("start-stop");
 const btnReset = document.getElementById("reset");
 let isRunning;
-let timeRemaining = [];
+let timeRemaining;
+let timerInterval;
 let inputTimeArray = [];
 let timeIncrements = [];
-let entryTime = [];
 
 const init = () => {
   isRunning = false;
@@ -84,27 +84,29 @@ const setDisplayPlaceholder = (
 };
 
 const setTimeRemaining = (totalSeconds) => {
-  console.log(totalSeconds);
+  let timerMinutes = Math.floor(totalSeconds / 60);
+  let timerSeconds = totalSeconds - timerMinutes * 60;
+
+  return `${timerMinutes.toString().padStart(2, 0)}m ${timerSeconds
+    .toString()
+    .padStart(2, 0)}s`;
 };
 
 const setTimerValue = (timeValueEntered) => {
-  timeIncrements = getInputTimeArray(
-    timeEntry.placeholder,
-    timeInputAmtIndicies
-  );
+  timeIncrements = getInputTimeArray(timeValueEntered, timeInputAmtIndicies);
 
-  secondsRemaining = getSecondsRemaining(timeIncrements);
-  setTimeRemaining(secondsRemaining);
+  timeRemaining = setTimeRemaining(getSecondsRemaining(timeIncrements));
 };
 
 const timerStart = () => {
   isRunning = true;
   setTimerValue(timeEntry.placeholder);
+  timerInterval = setInterval(updateTimer, 1000);
   btnStartStop.innerText = "Stop";
 };
 
 const timerStop = () => {
-  // TODO: clearInterval(timeInterval)
+  clearInterval(timerInterval);
   isRunning = false;
   console.log(timeEntry.placeholder);
   btnStartStop.innerText = "Start";
@@ -124,6 +126,11 @@ const updateDisplayPlaceholder = (key) => {
     timeEntryActivatePlaceholder
   );
   timeEntry.value = "";
+};
+
+const updateTimer = () => {
+  let mark = new Date();
+  console.log(mark);
 };
 
 // event listeners
