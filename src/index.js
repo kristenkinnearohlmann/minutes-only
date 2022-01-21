@@ -16,7 +16,7 @@ const init = () => {
 };
 
 // functions
-const getSecondsRemaining = (timeValues) => {
+const getSecondsRemaining = (timeValues, decrement = 0) => {
   let inputHours;
   let inputMinutes;
   let inputSeconds;
@@ -37,6 +37,7 @@ const getSecondsRemaining = (timeValues) => {
   totalSeconds += inputHours > 0 ? inputHours * 60 * 60 : 0;
   totalSeconds += inputMinutes > 0 ? inputMinutes * 60 : 0;
   totalSeconds += inputSeconds > 0 ? inputSeconds : 0;
+  totalSeconds -= decrement;
 
   return totalSeconds;
 };
@@ -92,10 +93,13 @@ const setTimeRemaining = (totalSeconds) => {
     .padStart(2, 0)}s`;
 };
 
-const setTimerValue = (timeValueEntered) => {
+const setTimerValue = (timeValueEntered, decrement = 0) => {
   timeIncrements = getInputTimeArray(timeValueEntered, timeInputAmtIndicies);
 
-  timeRemaining = setTimeRemaining(getSecondsRemaining(timeIncrements));
+  timeRemaining = setTimeRemaining(
+    getSecondsRemaining(timeIncrements, decrement)
+  );
+  timeEntry.placeholder = timeRemaining;
 };
 
 const timerStart = () => {
@@ -129,8 +133,16 @@ const updateDisplayPlaceholder = (key) => {
 };
 
 const updateTimer = () => {
-  let mark = new Date();
-  console.log(mark);
+  setTimerValue(timeEntry.placeholder, 1);
+  console.log(timeRemaining);
+  if (
+    timeRemaining
+      .split("")
+      .filter((val) => val.match(/[0-9]/g))
+      .every((val) => val === "0")
+  ) {
+    timerStop();
+  }
 };
 
 // event listeners
