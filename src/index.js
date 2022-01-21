@@ -2,13 +2,16 @@ const timeEntry = document.getElementById("time-entry");
 const timeEntryPlaceholder = timeEntry.placeholder;
 const timeEntryActivatePlaceholder = "00h 00m 00|s";
 const timeInputAmtIndicies = [0, 1, 4, 5, 8, 9];
+const btnStartStop = document.getElementById("start-stop");
+const btnReset = document.getElementById("reset");
+let isRunning;
 let inputTimeArray = [];
 let timeIncrements = [];
 let entryTime = [];
-const btnStartStop = document.getElementById("start-stop");
-const btnReset = document.getElementById("reset");
 
-const init = () => {};
+const init = () => {
+  isRunning = false;
+};
 
 // functions
 const getInputTimeArray = (timeValue, timeIndicies) => {
@@ -48,12 +51,12 @@ const setDisplayPlaceholder = (
 };
 
 const timerStart = () => {
-  console.log("Pushed start");
+  isRunning = true;
   btnStartStop.innerText = "Stop";
 };
 
 const timerStop = () => {
-  console.log("Pushed stop");
+  isRunning = false;
   btnStartStop.innerText = "Start";
 };
 
