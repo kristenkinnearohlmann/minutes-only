@@ -24,9 +24,6 @@ const getInputTimeArray = (timeValue, timeIndicies) => {
 
 const reset = () => {
   timerStop();
-  //   currentTimeValue = "";
-  //   timeInput.placeholder = timeInputPlaceholder;
-  //   stopTimer();
   resetTimerInput();
 };
 
