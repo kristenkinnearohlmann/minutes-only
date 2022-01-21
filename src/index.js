@@ -5,8 +5,8 @@ const timeInputAmtIndicies = [0, 1, 4, 5, 8, 9];
 const timeMinSecIndicies = [0, 1, 4, 5];
 const btnStartStop = document.getElementById("start-stop");
 const btnReset = document.getElementById("reset");
+let timeRemaining = timeEntryPlaceholder;
 let isRunning;
-let timeRemaining;
 let timerInterval;
 let inputTimeArray = [];
 let timeIncrements = [];
@@ -103,8 +103,10 @@ const setTimerValue = (timeValueEntered, decrement = 0) => {
 };
 
 const timerStart = () => {
-  isRunning = true;
   setTimerValue(timeEntry.placeholder);
+  console.log(timeRemaining);
+  if (timeRemaining === timeEntryPlaceholder) return;
+  isRunning = true;
   timerInterval = setInterval(updateTimer, 1000);
   btnStartStop.innerText = "Stop";
 };
@@ -133,8 +135,9 @@ const updateDisplayPlaceholder = (key) => {
 };
 
 const updateTimer = () => {
-  setTimerValue(timeEntry.placeholder, 1);
   console.log(timeRemaining);
+  setTimerValue(timeEntry.placeholder, 1);
+
   if (
     timeRemaining
       .split("")
