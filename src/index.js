@@ -5,6 +5,7 @@ const timeInputAmtIndicies = [0, 1, 4, 5, 8, 9];
 let inputTimeArray = [];
 let timeIncrements = [];
 let entryTime = [];
+const btnStartStop = document.getElementById("start-stop");
 const btnReset = document.getElementById("reset");
 
 const init = () => {};
@@ -75,9 +76,10 @@ timeEntry.addEventListener("keyup", (e) => {
   }
 });
 
-// btnStartStop.addEventListener("click", (e) => {
-//   startStop(e);
-// });
+btnStartStop.addEventListener("click", (e) => {
+  // startStop(e);
+  console.log(e.target.textContent);
+});
 
 btnReset.addEventListener("click", () => {
   reset();
