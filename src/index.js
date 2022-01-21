@@ -23,9 +23,8 @@ const getInputTimeArray = (timeValue, timeIndicies) => {
 };
 
 const reset = () => {
-  //   isRunning = false;
+  timerStop();
   //   currentTimeValue = "";
-  //   btnStartStop.innerText = "Start";
   //   timeInput.placeholder = timeInputPlaceholder;
   //   stopTimer();
   resetTimerInput();
@@ -90,8 +89,6 @@ timeEntry.addEventListener("keyup", (e) => {
 });
 
 btnStartStop.addEventListener("click", (e) => {
-  // startStop(e);
-  console.log(e.target.textContent);
   e.target.textContent === "Start" ? timerStart() : timerStop();
 });
 
