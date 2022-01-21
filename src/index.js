@@ -10,18 +10,17 @@ let timeRemaining = [];
 let inputTimeArray = [];
 let timeIncrements = [];
 let entryTime = [];
-let inputHours;
-let inputMinutes;
-let inputSeconds;
 
 const init = () => {
   isRunning = false;
 };
 
 // functions
-const convertTimeValue = (timeValues) => {
-  console.log(timeValues);
-  console.log(timeValues.length);
+const getSecondsRemaining = (timeValues) => {
+  let inputHours;
+  let inputMinutes;
+  let inputSeconds;
+  let totalSeconds = 0;
 
   if (timeValues.length === 6) {
     inputHours = parseTimeIncrement(timeValues[0], timeValues[1]);
@@ -34,6 +33,12 @@ const convertTimeValue = (timeValues) => {
     inputMinutes = 0;
     inputSeconds = parseTimeIncrement(timeValues[0], timeValues[1]);
   }
+
+  totalSeconds += inputHours > 0 ? inputHours * 60 * 60 : 0;
+  totalSeconds += inputMinutes > 0 ? inputMinutes * 60 : 0;
+  totalSeconds += inputSeconds > 0 ? inputSeconds : 0;
+
+  return totalSeconds;
 };
 
 const getInputTimeArray = (entryTimeValue, timeIndicies) => {
@@ -78,14 +83,18 @@ const setDisplayPlaceholder = (
   return displayTime.join("");
 };
 
+const setTimeRemaining = (totalSeconds) => {
+  console.log(totalSeconds);
+};
+
 const setTimerValue = (timeValueEntered) => {
   timeIncrements = getInputTimeArray(
     timeEntry.placeholder,
     timeInputAmtIndicies
   );
 
-  timeRemaining = convertEntryTime(timeIncrements);
-  console.log(timeRemaining);
+  secondsRemaining = getSecondsRemaining(timeIncrements);
+  setTimeRemaining(secondsRemaining);
 };
 
 const timerStart = () => {
