@@ -47,6 +47,16 @@ const setDisplayPlaceholder = (
   return displayTime.join("");
 };
 
+const timerStart = () => {
+  console.log("Pushed start");
+  btnStartStop.innerText = "Stop";
+};
+
+const timerStop = () => {
+  console.log("Pushed stop");
+  btnStartStop.innerText = "Start";
+};
+
 const updateDisplayPlaceholder = (key) => {
   timeIncrements = getInputTimeArray(
     timeEntry.placeholder,
@@ -79,6 +89,7 @@ timeEntry.addEventListener("keyup", (e) => {
 btnStartStop.addEventListener("click", (e) => {
   // startStop(e);
   console.log(e.target.textContent);
+  e.target.textContent === "Start" ? timerStart() : timerStop();
 });
 
 btnReset.addEventListener("click", () => {
