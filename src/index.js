@@ -104,7 +104,7 @@ const setTimerValue = (timeValueEntered, decrement = 0) => {
 
 const timerStart = () => {
   setTimerValue(timeEntry.placeholder);
-  console.log(timeRemaining);
+
   if (timeRemaining === timeEntryPlaceholder) return;
   isRunning = true;
   timerInterval = setInterval(updateTimer, 1000);
@@ -114,7 +114,6 @@ const timerStart = () => {
 const timerStop = () => {
   clearInterval(timerInterval);
   isRunning = false;
-  console.log(timeEntry.placeholder);
   btnStartStop.innerText = "Start";
 };
 
@@ -135,7 +134,6 @@ const updateDisplayPlaceholder = (key) => {
 };
 
 const updateTimer = () => {
-  console.log(timeRemaining);
   setTimerValue(timeEntry.placeholder, 1);
 
   if (
@@ -145,10 +143,27 @@ const updateTimer = () => {
       .every((val) => val === "0")
   ) {
     timerStop();
+    new Audio(
+      "./assets/skyclad_sound_gong_sound_design_muffled_low_heavy_ponderous_262.mp3"
+    ).play();
   }
 };
 
 // event listeners
+btnStartStop.addEventListener("click", (e) => {
+  e.target.textContent === "Start" ? timerStart() : timerStop();
+});
+
+btnReset.addEventListener("click", () => {
+  reset();
+});
+
+document.addEventListener("click", (e) => {
+  if (!["reset", "start-stop", "time-entry"].includes(e.target.id)) {
+    setTimerValue(timeEntry.placeholder);
+  }
+});
+
 timeEntry.addEventListener("click", () => {
   timeEntry.placeholder = timeEntryActivatePlaceholder;
 });
@@ -159,14 +174,6 @@ timeEntry.addEventListener("keyup", (e) => {
   } else {
     timeEntry.value = "";
   }
-});
-
-btnStartStop.addEventListener("click", (e) => {
-  e.target.textContent === "Start" ? timerStart() : timerStop();
-});
-
-btnReset.addEventListener("click", () => {
-  reset();
 });
 
 // Start app
