@@ -107,6 +107,7 @@ const timerStart = () => {
 
   if (timeRemaining === timeEntryPlaceholder) return;
   isRunning = true;
+  timeEntry.disabled = true;
   timerInterval = setInterval(updateTimer, 1000);
   btnStartStop.innerText = "Stop";
 };
@@ -114,6 +115,7 @@ const timerStart = () => {
 const timerStop = () => {
   clearInterval(timerInterval);
   isRunning = false;
+  timeEntry.disabled = false;
   btnStartStop.innerText = "Start";
 };
 
@@ -165,7 +167,6 @@ document.addEventListener("click", (e) => {
 });
 
 timeEntry.addEventListener("click", () => {
-  if (isRunning) return;
   timeEntry.placeholder = timeEntryActivatePlaceholder;
 });
 
