@@ -23,10 +23,10 @@ section {
 }
 
 main {
-  /* align-items: center; */
-  /* display: flex; */
-  /* height: calc(100vh - 2rem); */
-  /* justify-content: center; */
+  align-items: center;
+  display: flex;
+  height: 50vh;
+  justify-content: center;
   /* margin: 0 1rem; */
 }
 
