@@ -11,17 +11,23 @@ body {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100vh;
   margin: 0 auto;
   overflow: hidden;
-  padding: 0.5rem;
+}
+
+section {
+  border: 1px solid yellow;
+  height: calc(100vh - 100px);
+  margin: 0.5rem;
 }
 
 main {
   align-items: center;
   display: flex;
-  height: calc(100vh - 2rem);
+  /* height: calc(100vh - 2rem); */
   justify-content: center;
-  margin: 0 1rem;
+  /* margin: 0 1rem; */
 }
 
 #container {
@@ -59,16 +65,6 @@ main {
   width: 100%;
 }
 
-/* #time {
-  background-color: transparent;
-  border: none;
-  color: black;
-  font-size: 3rem;
-  height: 100%;
-  text-align: center;
-  width: 100%;
-} */
-
 .timer-button {
   border: 1px solid #575b66;
   border-radius: 5px;
@@ -91,9 +87,10 @@ main {
 }
 
 footer {
+  border: 1px solid orange;
   color: #dedede;
   font-size: 0.75rem;
-  height: 1rem;
+  /* height: 1rem; */
 }
 
 footer a {
