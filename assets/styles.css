@@ -93,11 +93,20 @@ footer a {
 
 /* media query for less than 300px */
 @media only screen and (max-width: 299px) {
-  #container {
-    width: 100%;
+  #time-entry {
+    font-size: 2rem;
   }
 
-  #time {
+  .timer-button {
+    font-size: 0.95rem;
+    margin: 0 4px 0 4px;
+    width: 4rem;
+  }
+}
+
+/* media query for Mobile S */
+@media only screen and (max-width: 320px) {
+  #time-entry {
     font-size: 2rem;
   }
 
@@ -110,14 +119,6 @@ footer a {
 
 /* media query for generic tablet */
 @media only screen and (min-width: 600px) {
-  #container {
-    height: 50%;
-  }
-
-  #time {
-    font-size: 5rem;
-  }
-
   .timer-button {
     font-size: 2rem;
     margin: 0 6px 0 6px;
@@ -127,12 +128,11 @@ footer a {
 
 /* media query for generic desktop */
 @media only screen and (min-width: 768px) {
-  #container {
-    height: 60%;
-    width: 90%;
+  main {
+    margin: 0 10% 0 10%;
   }
 
-  #time {
+  #time-entry {
     font-size: 5rem;
   }
 
@@ -144,51 +144,52 @@ footer a {
 }
 
 @media only screen and (min-width: 1024px) {
-  #container {
-    height: 60%;
-    width: 90%;
+  #timer {
+    height: 50vh;
   }
 
-  #time {
-    font-size: 8rem;
+  #time-entry {
+    font-size: 6rem;
   }
 
   .timer-button {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin: 0 8px 0 8px;
     width: 14rem;
+  }
+
+  footer {
+    margin-bottom: 5%;
   }
 }
 
 @media only screen and (min-width: 1440px) {
-  #container {
-    height: 60%;
-    width: 90%;
+  #timer {
+    height: 50vh;
   }
 
-  #time {
-    font-size: 10rem;
+  #time-entry {
+    font-size: 6rem;
   }
 
   .timer-button {
     font-size: 3rem;
     margin: 0 10px 0 10px;
-    width: 16rem;
+    width: 14rem;
   }
 }
 
 @media only screen and (min-width: 2560px) {
-  #container {
-    height: 60%;
-    width: 90%;
+  #timer {
+    height: 50vh;
   }
 
-  #time {
-    font-size: 18rem;
+  #time-entry {
+    font-size: 12rem;
   }
 
   .timer-button {
-    font-size: 6rem;
+    font-size: 5rem;
     margin: 0 10px 0 10px;
     width: 24rem;
   }
