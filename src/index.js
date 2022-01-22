@@ -165,6 +165,7 @@ document.addEventListener("click", (e) => {
 });
 
 timeEntry.addEventListener("click", () => {
+  if (isRunning) return;
   timeEntry.placeholder = timeEntryActivatePlaceholder;
 });
 
