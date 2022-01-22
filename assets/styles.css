@@ -5,7 +5,6 @@ input::-webkit-inner-spin-button {
 }
 
 body {
-  border: 1px solid pink;
   background-color: darkgray;
   /* background-image: url("jonny-caspari-TQGpLw48VsU-unsplash.jpg"); */
   background-image: url("norbert-buduczki-Ulbl1i3wxIM-unsplash.jpg");
@@ -19,15 +18,15 @@ body {
 
 section {
   border: 1px solid yellow;
-  /* height: calc(100vh - 75px); */
   margin: 0.5rem;
+  transform: translate(0, 50%);
 }
 
 main {
-  align-items: center;
-  display: flex;
+  /* align-items: center; */
+  /* display: flex; */
   /* height: calc(100vh - 2rem); */
-  justify-content: center;
+  /* justify-content: center; */
   /* margin: 0 1rem; */
 }
 
@@ -36,7 +35,7 @@ main {
   border-radius: 15px;
   height: 40%;
   padding: 1rem;
-  width: 100%;
+  /* width: 100%; */
 }
 
 #timer {
