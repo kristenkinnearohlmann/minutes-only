@@ -5,6 +5,7 @@ input::-webkit-inner-spin-button {
 }
 
 body {
+  border: 1px solid pink;
   background-color: darkgray;
   /* background-image: url("jonny-caspari-TQGpLw48VsU-unsplash.jpg"); */
   background-image: url("norbert-buduczki-Ulbl1i3wxIM-unsplash.jpg");
@@ -18,7 +19,7 @@ body {
 
 section {
   border: 1px solid yellow;
-  height: calc(100vh - 75px);
+  /* height: calc(100vh - 75px); */
   margin: 0.5rem;
 }
 
