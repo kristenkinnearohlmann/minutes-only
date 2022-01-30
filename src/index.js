@@ -1,3 +1,4 @@
+const MINUTES_ONLY_KEY = "minutes-only-timer";
 const timeEntry = document.getElementById("time-entry");
 const timeEntryPlaceholder = timeEntry.placeholder;
 const timeEntryActivatePlaceholder = "00h 00m 00|s";
@@ -93,17 +94,29 @@ const setTimeRemaining = (totalSeconds) => {
     .padStart(2, 0)}s`;
 };
 
+const setTimerCookie = (secondsRemaining) => {
+  window.sessionStorage.setItem(MINUTES_ONLY_KEY, secondsRemaining);
+};
+
 const setTimerValue = (timeValueEntered, decrement = 0) => {
   timeIncrements = getInputTimeArray(timeValueEntered, timeInputAmtIndicies);
 
+  let secondsRemaining = getSecondsRemaining(timeIncrements, decrement);
+
   timeRemaining = setTimeRemaining(
-    getSecondsRemaining(timeIncrements, decrement)
+    // getSecondsRemaining(timeIncrements, decrement)
+    secondsRemaining
   );
+
   timeEntry.placeholder = timeRemaining;
+
+  return secondsRemaining;
 };
 
 const timerStart = () => {
-  setTimerValue(timeEntry.placeholder);
+  let secondsRemaining = setTimerValue(timeEntry.placeholder);
+
+  setTimerCookie(secondsRemaining);
 
   if (timeRemaining === timeEntryPlaceholder) return;
   isRunning = true;
@@ -113,6 +126,7 @@ const timerStart = () => {
 };
 
 const timerStop = () => {
+  window.sessionStorage.removeItem(MINUTES_ONLY_KEY);
   clearInterval(timerInterval);
   isRunning = false;
   timeEntry.disabled = false;
@@ -136,7 +150,7 @@ const updateDisplayPlaceholder = (key) => {
 };
 
 const updateTimer = () => {
-  setTimerValue(timeEntry.placeholder, 1);
+  let secondsRemaining = setTimerValue(timeEntry.placeholder, 1);
 
   if (
     timeRemaining
@@ -148,6 +162,9 @@ const updateTimer = () => {
     new Audio(
       "./assets/skyclad_sound_gong_sound_design_muffled_low_heavy_ponderous_262.mp3"
     ).play();
+  } else {
+    console.log(secondsRemaining);
+    setTimerCookie(secondsRemaining);
   }
 };
 
