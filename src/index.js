@@ -163,7 +163,6 @@ const updateTimer = () => {
       "./assets/skyclad_sound_gong_sound_design_muffled_low_heavy_ponderous_262.mp3"
     ).play();
   } else {
-    console.log(secondsRemaining);
     setTimerCookie(secondsRemaining);
   }
 };
